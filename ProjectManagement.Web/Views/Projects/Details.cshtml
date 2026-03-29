@@ -9,7 +9,7 @@
 }
 
 <div class="mb-4">
-    <a asp-action="Index" class="inline-flex items-center text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors">
+    <a asp-action="Index" class="inline-flex items-center text-sm font-medium text-slate-400 hover:text-slate-200 transition-colors">
         <i class="bi bi-chevron-left mr-1 text-[10px]"></i> Volver a Proyectos
     </a>
 </div>
@@ -17,28 +17,28 @@
 <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-8">
     <div class="flex flex-col gap-2">
         <div class="flex items-center gap-3">
-            <h1 class="text-3xl font-bold tracking-tight text-slate-900">@Model.Name</h1>
+            <h1 class="text-3xl font-bold tracking-tight text-slate-100">@Model.Name</h1>
             @if (Model.Status == ProjectStatus.Draft)
             {
-                <div class="inline-flex items-center rounded-full border border-slate-200 px-2.5 py-0.5 text-xs font-semibold text-slate-500 bg-white shadow-sm">Borrador</div>
+                <div class="inline-flex items-center rounded-full border border-slate-600 px-2.5 py-0.5 text-xs font-semibold text-slate-400 bg-slate-800">Borrador</div>
             }
             else if (Model.Status == ProjectStatus.Active)
             {
-                <div class="inline-flex items-center rounded-full border border-indigo-200 px-2.5 py-0.5 text-xs font-semibold text-indigo-700 bg-indigo-50 shadow-sm">Activo</div>
+                <div class="inline-flex items-center rounded-full border border-indigo-500/30 px-2.5 py-0.5 text-xs font-semibold text-indigo-300 bg-indigo-500/10">Activo</div>
             }
             else
             {
-                <div class="inline-flex items-center rounded-full border border-emerald-200 px-2.5 py-0.5 text-xs font-semibold text-emerald-700 bg-emerald-50 shadow-sm">Completado</div>
+                <div class="inline-flex items-center rounded-full border border-emerald-500/30 px-2.5 py-0.5 text-xs font-semibold text-emerald-300 bg-emerald-500/10">Completado</div>
             }
         </div>
-        <p class="text-sm text-slate-500 max-w-2xl">@(string.IsNullOrWhiteSpace(Model.Description) ? "Sin descripción detallada. Utiliza las tareas para establecer objetivos medibles." : Model.Description)</p>
+        <p class="text-sm text-slate-400 max-w-2xl">@(string.IsNullOrWhiteSpace(Model.Description) ? "Sin descripción detallada. Utiliza las tareas para establecer objetivos medibles." : Model.Description)</p>
     </div>
-    
+
     <div class="flex items-center gap-2">
         @if (Model.Status == ProjectStatus.Draft)
         {
             <form asp-action="Activate" asp-route-id="@Model.Id" method="post" class="m-0">
-                <button type="submit" class="inline-flex h-9 items-center justify-center rounded-md bg-white border border-slate-200 px-4 py-2 text-sm font-medium text-slate-900 shadow-sm transition-colors hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50" @(Model.TotalTasks == 0 ? "disabled" : "")>
+                <button type="submit" class="inline-flex h-9 items-center justify-center rounded-md border border-slate-600 bg-slate-800 px-4 py-2 text-sm font-medium text-slate-200 shadow-sm transition-colors hover:bg-slate-700 disabled:pointer-events-none disabled:opacity-50" @(Model.TotalTasks == 0 ? "disabled" : "")>
                     <i class="bi bi-play-circle mr-2"></i> Iniciar Ejecución
                 </button>
             </form>
@@ -46,7 +46,7 @@
         else if (Model.Status == ProjectStatus.Active)
         {
             <form asp-action="Complete" asp-route-id="@Model.Id" method="post" class="m-0">
-                <button type="submit" class="inline-flex h-9 items-center justify-center rounded-md bg-emerald-600 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-emerald-700 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-950 disabled:pointer-events-none disabled:opacity-50" @(Model.TotalTasks == 0 || Model.CompletedTasks < Model.TotalTasks ? "disabled" : "")>
+                <button type="submit" class="inline-flex h-9 items-center justify-center rounded-md px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-emerald-500/20 transition-all hover:opacity-90 disabled:pointer-events-none disabled:opacity-50" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);" @(Model.TotalTasks == 0 || Model.CompletedTasks < Model.TotalTasks ? "disabled" : "")>
                     <i class="bi bi-check2-all mr-2"></i> Cerrar Proyecto
                 </button>
             </form>
@@ -54,131 +54,130 @@
     </div>
 </div>
 
+<!-- Stat Cards -->
 <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-8">
-    <!-- Stat Cards (Vercel Style) -->
-    <div class="rounded-xl border border-slate-200 bg-white text-slate-950 shadow-sm">
+    <div class="rounded-xl border border-slate-700/50 bg-[#0f1826]">
         <div class="p-6 flex flex-row items-center justify-between space-y-0 pb-2">
-            <h3 class="tracking-tight text-sm font-medium text-slate-500">Tareas Totales</h3>
-            <i class="bi bi-list-task text-slate-400"></i>
+            <h3 class="tracking-tight text-sm font-medium text-slate-400">Tareas Totales</h3>
+            <i class="bi bi-list-task text-slate-500"></i>
         </div>
         <div class="p-6 pt-0">
-            <div class="text-2xl font-bold">@Model.TotalTasks</div>
+            <div class="text-2xl font-bold text-slate-100">@Model.TotalTasks</div>
         </div>
     </div>
-    <div class="rounded-xl border border-slate-200 bg-white text-slate-950 shadow-sm">
+    <div class="rounded-xl border border-emerald-500/20 bg-emerald-500/5">
         <div class="p-6 flex flex-row items-center justify-between space-y-0 pb-2">
-            <h3 class="tracking-tight text-sm font-medium text-slate-500">Completadas</h3>
-            <i class="bi bi-check-circle-fill text-emerald-500"></i>
+            <h3 class="tracking-tight text-sm font-medium text-slate-400">Completadas</h3>
+            <i class="bi bi-check-circle-fill text-emerald-400"></i>
         </div>
         <div class="p-6 pt-0">
-            <div class="text-2xl font-bold text-emerald-600">@Model.CompletedTasks</div>
+            <div class="text-2xl font-bold text-emerald-400">@Model.CompletedTasks</div>
         </div>
     </div>
-    <div class="rounded-xl border border-slate-200 bg-white text-slate-950 shadow-sm">
+    <div class="rounded-xl border border-amber-500/20 bg-amber-500/5">
         <div class="p-6 flex flex-row items-center justify-between space-y-0 pb-2">
-            <h3 class="tracking-tight text-sm font-medium text-slate-500">Pendientes</h3>
-            <i class="bi bi-clock-history text-amber-500"></i>
+            <h3 class="tracking-tight text-sm font-medium text-slate-400">Pendientes</h3>
+            <i class="bi bi-clock-history text-amber-400"></i>
         </div>
         <div class="p-6 pt-0">
-            <div class="text-2xl font-bold text-amber-600">@(Model.TotalTasks - Model.CompletedTasks)</div>
+            <div class="text-2xl font-bold text-amber-400">@(Model.TotalTasks - Model.CompletedTasks)</div>
         </div>
     </div>
-    <div class="rounded-xl border border-slate-200 bg-white text-slate-950 shadow-sm relative overflow-hidden">
-        <div class="absolute inset-x-0 bottom-0 h-1 bg-slate-100">
-            <div class="h-full bg-indigo-600" style="width: @percent%;"></div>
+    <div class="rounded-xl border border-indigo-500/20 bg-indigo-500/5 relative overflow-hidden">
+        <div class="absolute inset-x-0 bottom-0 h-1 bg-slate-800">
+            <div class="h-full bg-gradient-to-r from-indigo-500 to-purple-500" style="width: @percent%;"></div>
         </div>
         <div class="p-6 flex flex-row items-center justify-between space-y-0 pb-2">
-            <h3 class="tracking-tight text-sm font-medium text-slate-500">Progreso</h3>
-            <i class="bi bi-activity text-slate-400"></i>
+            <h3 class="tracking-tight text-sm font-medium text-slate-400">Progreso</h3>
+            <i class="bi bi-activity text-indigo-400"></i>
         </div>
         <div class="p-6 pt-0">
-            <div class="text-2xl font-bold">@percent%</div>
+            <div class="text-2xl font-bold text-indigo-300">@percent%</div>
         </div>
     </div>
 </div>
 
 <div class="grid grid-cols-1 xl:grid-cols-3 gap-8 items-start">
-    
-    <!-- Task List (Left/Main Column) -->
-    <div class="xl:col-span-2 rounded-xl border border-slate-200 bg-white text-slate-950 shadow-sm flex flex-col overflow-hidden">
-        <div class="p-6 flex flex-row items-center justify-between border-b border-slate-200 bg-slate-50/50">
+
+    <!-- Task List -->
+    <div class="xl:col-span-2 rounded-xl border border-slate-700/50 bg-[#0f1826] flex flex-col overflow-hidden">
+        <div class="p-6 flex flex-row items-center justify-between border-b border-slate-700/50 bg-slate-950/30">
             <div class="flex flex-col space-y-1.5">
-                <h3 class="font-semibold leading-none tracking-tight">Registro de Tareas</h3>
-                <p class="text-sm text-slate-500">Gestión estructurada de actividades del proyecto.</p>
+                <h3 class="font-semibold leading-none tracking-tight text-slate-100">Registro de Tareas</h3>
+                <p class="text-sm text-slate-400">Gestión estructurada de actividades del proyecto.</p>
             </div>
         </div>
-        
+
         <div class="p-0">
             @if (tasks == null || !tasks.Any())
             {
                 <div class="flex flex-col items-center justify-center py-12 text-center">
-                    <i class="bi bi-layout-text-sidebar-reverse text-4xl text-slate-300 mb-3 block"></i>
-                    <p class="text-sm font-medium text-slate-900">Sin tareas creadas</p>
+                    <i class="bi bi-layout-text-sidebar-reverse text-4xl text-slate-600 mb-3 block"></i>
+                    <p class="text-sm font-medium text-slate-300">Sin tareas creadas</p>
                     <p class="text-sm text-slate-500 mt-1">Añade tu primera tarea en el panel derecho para empezar.</p>
                 </div>
             }
             else
             {
-                <div class="divide-y divide-slate-200">
+                <div class="divide-y divide-slate-700/50">
                     @foreach (var t in tasks)
                     {
-                        <div class="flex items-center justify-between p-4 hover:bg-slate-50 transition-colors @(t.IsCompleted ? "bg-slate-50/50" : "")">
-                            
+                        <div class="flex items-center justify-between p-4 hover:bg-slate-800/40 transition-colors @(t.IsCompleted ? "opacity-60" : "")">
+
                             <div class="flex items-center gap-4 flex-1 min-w-0">
-                                <!-- Shadcn Square Checkbox -->
                                 @if (!t.IsCompleted)
                                 {
                                     <form asp-controller="Tasks" asp-action="Complete" asp-route-id="@t.Id" asp-route-projectId="@Model.Id" method="post" class="m-0 shrink-0">
-                                        <button type="submit" class="flex h-5 w-5 items-center justify-center rounded-sm border border-slate-300 bg-white text-transparent transition-colors hover:border-slate-900 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 shadow-sm">
+                                        <button type="submit" class="flex h-5 w-5 items-center justify-center rounded-sm border border-slate-600 bg-transparent text-transparent transition-colors hover:border-indigo-400 hover:text-indigo-400 focus-visible:outline-none shadow-sm">
                                             <i class="bi bi-check text-[14px]"></i>
                                         </button>
                                     </form>
                                 }
                                 else
                                 {
-                                    <div class="flex h-5 w-5 items-center justify-center rounded-sm bg-slate-900 text-slate-50 shrink-0 shadow-sm">
-                                        <i class="bi bi-check text-[14px]"></i>
+                                    <div class="flex h-5 w-5 items-center justify-center rounded-sm shrink-0 shadow-sm" style="background: linear-gradient(135deg, #6366f1, #a855f7);">
+                                        <i class="bi bi-check text-[14px] text-white"></i>
                                     </div>
                                 }
-                                
+
                                 <div class="flex flex-col min-w-0">
-                                    <span class="text-sm font-medium truncate @(t.IsCompleted ? "line-through text-slate-500" : "text-slate-900")">
+                                    <span class="text-sm font-medium truncate @(t.IsCompleted ? "line-through text-slate-500" : "text-slate-200")">
                                         @t.Title
                                     </span>
                                     <div class="flex items-center gap-2 mt-1">
                                         @if (t.Priority == TaskPriority.High)
                                         {
-                                            <span class="inline-flex items-center rounded-full border border-red-200 px-2 py-0.5 text-[10px] font-semibold text-red-700 bg-red-50">Alta</span>
+                                            <span class="inline-flex items-center rounded-full border border-red-500/30 px-2 py-0.5 text-[10px] font-semibold text-red-300 bg-red-500/10">Alta</span>
                                         }
                                         else if (t.Priority == TaskPriority.Medium)
                                         {
-                                            <span class="inline-flex items-center rounded-full border border-amber-200 px-2 py-0.5 text-[10px] font-semibold text-amber-700 bg-amber-50">Media</span>
+                                            <span class="inline-flex items-center rounded-full border border-amber-500/30 px-2 py-0.5 text-[10px] font-semibold text-amber-300 bg-amber-500/10">Media</span>
                                         }
                                         else
                                         {
-                                            <span class="inline-flex items-center rounded-full border border-slate-200 px-2 py-0.5 text-[10px] font-semibold text-slate-700 bg-slate-50">Baja</span>
+                                            <span class="inline-flex items-center rounded-full border border-slate-600 px-2 py-0.5 text-[10px] font-semibold text-slate-400 bg-slate-800">Baja</span>
                                         }
-                                        <span class="text-[11px] font-medium text-slate-400 border-l border-slate-300 pl-2">#@t.Order</span>
+                                        <span class="text-[11px] font-medium text-slate-500 border-l border-slate-700 pl-2">#@t.Order</span>
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="flex items-center gap-1.5 shrink-0 ml-4">
-                                <div class="flex items-center rounded-md border border-slate-200 bg-white p-0.5 shadow-sm hidden sm:flex">
+                                <div class="flex items-center rounded-md border border-slate-700 bg-slate-800/50 p-0.5 hidden sm:flex">
                                     <form asp-controller="Tasks" asp-action="Reorder" asp-route-id="@t.Id" asp-route-projectId="@Model.Id" asp-route-direction="up" method="post" class="m-0">
-                                        <button type="submit" class="inline-flex h-6 w-6 items-center justify-center rounded-[4px] text-slate-500 hover:bg-slate-100 hover:text-slate-900 transition-colors">
+                                        <button type="submit" class="inline-flex h-6 w-6 items-center justify-center rounded-[4px] text-slate-500 hover:bg-slate-700 hover:text-slate-200 transition-colors">
                                             <i class="bi bi-chevron-up text-xs"></i>
                                         </button>
                                     </form>
                                     <form asp-controller="Tasks" asp-action="Reorder" asp-route-id="@t.Id" asp-route-projectId="@Model.Id" asp-route-direction="down" method="post" class="m-0">
-                                        <button type="submit" class="inline-flex h-6 w-6 items-center justify-center rounded-[4px] text-slate-500 hover:bg-slate-100 hover:text-slate-900 transition-colors">
+                                        <button type="submit" class="inline-flex h-6 w-6 items-center justify-center rounded-[4px] text-slate-500 hover:bg-slate-700 hover:text-slate-200 transition-colors">
                                             <i class="bi bi-chevron-down text-xs"></i>
                                         </button>
                                     </form>
                                 </div>
-                                
+
                                 <form asp-controller="Tasks" asp-action="Delete" asp-route-id="@t.Id" asp-route-projectId="@Model.Id" method="post" class="m-0" onsubmit="return confirm('¿Confirmas eliminar esta tarea del registro?');">
-                                    <button type="submit" class="inline-flex h-7 w-7 items-center justify-center rounded-md border border-slate-200 bg-white text-slate-400 hover:bg-red-50 hover:text-red-600 hover:border-red-200 transition-colors shadow-sm">
+                                    <button type="submit" class="inline-flex h-7 w-7 items-center justify-center rounded-md border border-slate-700 bg-slate-800 text-slate-500 hover:bg-red-500/10 hover:text-red-400 hover:border-red-500/30 transition-colors">
                                         <i class="bi bi-trash3 text-xs"></i>
                                     </button>
                                 </form>
@@ -190,39 +189,40 @@
         </div>
     </div>
 
-    <!-- Right Sidebar (Add Task) -->
-    <div class="xl:col-span-1 rounded-xl border border-slate-200 bg-slate-50 text-slate-950 shadow-sm relative overflow-hidden">
-        <div class="p-6 pb-4">
-            <h3 class="font-semibold leading-none tracking-tight mb-1">Añadir a la cola</h3>
-            <p class="text-sm text-slate-500">Inserta rápidamente un nuevo hito.</p>
+    <!-- Add Task Sidebar -->
+    <div class="xl:col-span-1 rounded-xl border border-slate-700/50 bg-[#0f1826] relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-500/5 rounded-full blur-2xl pointer-events-none"></div>
+        <div class="p-6 pb-4 border-b border-slate-700/50">
+            <h3 class="font-semibold leading-none tracking-tight mb-1 text-slate-100">Añadir a la cola</h3>
+            <p class="text-sm text-slate-400">Inserta rápidamente un nuevo hito.</p>
         </div>
-        
-        <div class="p-6 pt-0">
+
+        <div class="p-6">
             <form asp-controller="Tasks" asp-action="Create" asp-route-projectId="@Model.Id" method="post" class="space-y-4">
-                
+
                 <div class="space-y-1.5">
-                    <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Identificador Tarea</label>
-                    <input type="text" name="Title" class="flex h-9 w-full rounded-md border border-slate-200 bg-white px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-slate-400 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-indigo-600 disabled:cursor-not-allowed disabled:opacity-50" placeholder="¿Qué necesitas hacer?" required />
+                    <label class="text-sm font-medium text-slate-300">Identificador Tarea</label>
+                    <input type="text" name="Title" class="flex h-9 w-full rounded-md border border-slate-700 bg-slate-800/50 px-3 py-1 text-sm text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 transition-colors" placeholder="¿Qué necesitas hacer?" required />
                 </div>
-                
+
                 <div class="grid grid-cols-2 gap-4">
                     <div class="space-y-1.5">
-                        <label class="text-sm font-medium leading-none">Prioridad</label>
-                        <select name="Priority" class="flex h-9 w-full rounded-md border border-slate-200 bg-white px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-indigo-600 disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer">
+                        <label class="text-sm font-medium text-slate-300">Prioridad</label>
+                        <select name="Priority" class="flex h-9 w-full rounded-md border border-slate-700 bg-slate-800/50 px-3 py-1 text-sm text-slate-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 transition-colors cursor-pointer">
                             <option value="0">Baja</option>
                             <option value="1" selected>Media</option>
                             <option value="2">Alta</option>
                         </select>
                     </div>
-                    
+
                     <div class="space-y-1.5">
-                        <label class="text-sm font-medium leading-none">Índice</label>
-                        <input type="number" name="Order" class="flex h-9 w-full rounded-md border border-slate-200 bg-white px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-indigo-600 disabled:cursor-not-allowed disabled:opacity-50" placeholder="1, 2, 3..." />
+                        <label class="text-sm font-medium text-slate-300">Índice</label>
+                        <input type="number" name="Order" class="flex h-9 w-full rounded-md border border-slate-700 bg-slate-800/50 px-3 py-1 text-sm text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 transition-colors" placeholder="1, 2, 3..." />
                     </div>
                 </div>
 
                 <div class="pt-2">
-                    <button type="submit" class="inline-flex h-9 w-full items-center justify-center rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-slate-50 shadow transition-colors hover:bg-slate-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50">
+                    <button type="submit" class="inline-flex h-9 w-full items-center justify-center rounded-md px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-indigo-500/20 transition-all hover:opacity-90" style="background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);">
                         Añadir Tarea
                     </button>
                 </div>

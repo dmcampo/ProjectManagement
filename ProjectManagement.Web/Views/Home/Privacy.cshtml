@@ -1,6 +1,81 @@
 @{
     ViewData["Title"] = "Política de Privacidad";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Utiliza esta página para detallar la política de privacidad de tu sitio.</p>
+<div class="legal-page">
+    <!-- Decorative elements matching landing page -->
+    <div class="glow-orb glow-orb--purple" style="width:350px;height:350px;top:-100px;right:-50px;opacity:0.2;"></div>
+    <div class="glow-orb glow-orb--blue" style="width:300px;height:300px;bottom:-80px;left:-40px;opacity:0.15;"></div>
+    <div class="grid-pattern"></div>
+
+    <div class="legal-container auth-animate">
+        <div class="legal-header">
+            <div class="section-label">Legal</div>
+            <h1 class="section-heading">Política de Privacidad</h1>
+            <p class="section-sub" style="margin-bottom:2rem;">Última actualización: @DateTime.Now.ToString("dd 'de' MMMM 'de' yyyy", new System.Globalization.CultureInfo("es-ES"))</p>
+        </div>
+
+        <div class="legal-card">
+            <div class="legal-section">
+                <div class="legal-icon legal-icon--indigo">
+                    <i class="bi bi-database-lock"></i>
+                </div>
+                <h3>Información que Recopilamos</h3>
+                <p>Recopilamos únicamente la información necesaria para proporcionar nuestros servicios: nombre, correo electrónico y contraseña (almacenada de forma segura con BCrypt). No vendemos ni compartimos tus datos con terceros.</p>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <div class="legal-section">
+                <div class="legal-icon legal-icon--purple">
+                    <i class="bi bi-shield-lock"></i>
+                </div>
+                <h3>Cómo Protegemos tus Datos</h3>
+                <p>Utilizamos cifrado de extremo a extremo, autenticación JWT y las mejores prácticas de seguridad de la industria. Tu información se almacena en servidores seguros con acceso restringido.</p>
+                <ul class="legal-list">
+                    <li><i class="bi bi-check2-circle"></i> Contraseñas hasheadas con BCrypt</li>
+                    <li><i class="bi bi-check2-circle"></i> Comunicación cifrada con HTTPS</li>
+                    <li><i class="bi bi-check2-circle"></i> Tokens JWT con expiración automática</li>
+                </ul>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <div class="legal-section">
+                <div class="legal-icon legal-icon--emerald">
+                    <i class="bi bi-person-gear"></i>
+                </div>
+                <h3>Tus Derechos</h3>
+                <p>Tienes derecho a acceder, modificar o eliminar tu información personal en cualquier momento. Puedes solicitar la eliminación completa de tu cuenta y todos los datos asociados.</p>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <div class="legal-section">
+                <div class="legal-icon legal-icon--amber">
+                    <i class="bi bi-cookie"></i>
+                </div>
+                <h3>Cookies y Seguimiento</h3>
+                <p>Utilizamos cookies esenciales únicamente para mantener tu sesión activa. No utilizamos cookies de seguimiento, publicidad ni analítica de terceros.</p>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <div class="legal-section">
+                <div class="legal-icon legal-icon--indigo">
+                    <i class="bi bi-envelope-paper"></i>
+                </div>
+                <h3>Contacto</h3>
+                <p>Si tienes preguntas sobre nuestra política de privacidad, no dudes en contactarnos a través de nuestros canales oficiales. Responderemos en un plazo máximo de 48 horas hábiles.</p>
+            </div>
+        </div>
+
+        <!-- Back to home CTA -->
+        <div class="legal-cta">
+            <a asp-controller="Home" asp-action="Index" class="btn btn--ghost">
+                <i class="bi bi-arrow-left"></i>
+                Volver al inicio
+            </a>
+        </div>
+    </div>
+</div>

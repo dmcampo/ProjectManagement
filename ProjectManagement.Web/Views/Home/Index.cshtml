@@ -1,81 +1,264 @@
-@{ ViewData["Title"] = "Plataforma de Gestión Profesional"; }
+@{ 
+    ViewData["Title"] = "ProMana — Gestión de Proyectos para Equipos de Alto Rendimiento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
-<section class="w-full py-20 md:py-32 lg:py-48 flex flex-col items-center justify-center text-center px-4 md:px-6">
-    <div class="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-sm font-medium transition-colors hover:bg-slate-100 mb-8 cursor-pointer">
-        <span class="flex h-2 w-2 rounded-full bg-indigo-600 mr-2"></span>
-        <span>ProMana 2.0 está disponible</span>
-        <i class="bi bi-arrow-right ml-2 text-slate-400"></i>
-    </div>
-    
-    <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl text-slate-900 max-w-4xl mx-auto mb-6">
-        Software para equipos <br class="hidden sm:inline" />
-        <span class="text-indigo-600">orientados a resultados</span>
-    </h1>
-    
-    <p class="mx-auto max-w-[700px] text-slate-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed mb-10">
-        Una plataforma diseñada meticulosamente para profesionales. Planifica, gestiona y entrega tus proyectos en un entorno veloz, sin recargas y enfocado en la productividad pura.
-    </p>
-    
-    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center w-full max-w-sm sm:max-w-none">
-        <a asp-controller="Auth" asp-action="Register" class="inline-flex h-11 items-center justify-center rounded-md bg-slate-900 px-8 py-2 text-sm font-medium text-slate-50 shadow transition-colors hover:bg-slate-900/90 w-full sm:w-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400">
-            Comenzar Ahora
-        </a>
-        <a asp-controller="Auth" asp-action="Login" class="inline-flex h-11 items-center justify-center rounded-md border border-slate-200 bg-white px-8 py-2 text-sm font-medium text-slate-900 shadow-sm transition-colors hover:bg-slate-100 w-full sm:w-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400">
-            Iniciar Sesión
-        </a>
-    </div>
-</section>
+<div class="landing-root">
 
-<section class="w-full py-20 bg-slate-50 border-t border-slate-200 px-4 md:px-6">
-    <div class="mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-8">
-        
-        <div class="rounded-xl border border-slate-200 bg-white text-slate-950 shadow-sm">
-            <div class="p-6 flex flex-col items-start gap-4">
-                <div class="bg-slate-100 p-2.5 rounded-lg border border-slate-200">
-                    <i class="bi bi-kanban text-lg text-slate-700"></i>
+    <!-- ═══════════════════════════════════════════ HERO ═══ -->
+    <section class="hero-section">
+        <!-- Glow orbs decoration -->
+        <div class="glow-orb glow-orb--purple"></div>
+        <div class="glow-orb glow-orb--blue"></div>
+        <div class="grid-pattern"></div>
+
+        <div class="hero-inner">
+            <!-- Left: Copy -->
+            <div class="hero-copy" data-animate="fade-up">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    <span>ProMana ya está disponible</span>
+                    <i class="bi bi-arrow-right badge-arrow"></i>
                 </div>
-                <div>
-                    <h3 class="font-semibold leading-none tracking-tight mb-2">Flujos Ágiles</h3>
-                    <p class="text-sm text-slate-500">Diseñado para adaptarse a tus iteraciones. Administra todo el ciclo de vida del trabajo con velocidad nativa.</p>
+
+                <h1 class="hero-heading">
+                    Software para equipos<br />
+                    <span class="hero-heading--gradient">orientados a resultados</span>
+                </h1>
+
+                <p class="hero-subtext">
+                    Planifica, lanza y entrega proyectos con precisión. Una plataforma construida sobre Clean Architecture en .NET, diseñada para ingenieros que valoran la calidad.
+                </p>
+
+                <div class="hero-cta-group">
+                    <a asp-controller="Auth" asp-action="Register" class="btn btn--primary">
+                        <i class="bi bi-rocket-takeoff-fill"></i>
+                        Comenzar Gratis
+                    </a>
+                    <a asp-controller="Auth" asp-action="Login" class="btn btn--ghost">
+                        <i class="bi bi-box-arrow-in-right"></i>
+                        Iniciar Sesión
+                    </a>
+                </div>
+
+                <div class="hero-social-proof">
+                    <div class="proof-avatars">
+                        <span class="avatar avatar--1">J</span>
+                        <span class="avatar avatar--2">M</span>
+                        <span class="avatar avatar--3">A</span>
+                        <span class="avatar avatar--4">R</span>
+                    </div>
+                    <span class="proof-text">Equipos de ingeniería confían en ProMana</span>
+                </div>
+            </div>
+
+            <!-- Right: Dashboard mockup -->
+            <div class="hero-mockup" data-animate="fade-left">
+                <div class="mockup-shell">
+                    <div class="mockup-bar">
+                        <span class="dot dot--red"></span>
+                        <span class="dot dot--yellow"></span>
+                        <span class="dot dot--green"></span>
+                        <span class="mockup-url">app.promana.io/projects</span>
+                    </div>
+                    <div class="mockup-body">
+                        <!-- Sidebar -->
+                        <div class="mock-sidebar">
+                            <div class="mock-brand">
+                                <span class="mock-brand-icon"><i class="bi bi-hexagon-fill"></i></span>
+                                ProMana
+                            </div>
+                            <nav class="mock-nav">
+                                <a class="mock-nav-item mock-nav-item--active"><i class="bi bi-grid-1x2-fill"></i> Dashboard</a>
+                                <a class="mock-nav-item"><i class="bi bi-folder2-open"></i> Proyectos</a>
+                                <a class="mock-nav-item"><i class="bi bi-check2-square"></i> Tareas</a>
+                                <a class="mock-nav-item"><i class="bi bi-bar-chart-line"></i> Métricas</a>
+                            </nav>
+                        </div>
+                        <!-- Main panel -->
+                        <div class="mock-main">
+                            <div class="mock-header">
+                                <h4>Mis Proyectos</h4>
+                                <span class="mock-btn">+ Nuevo</span>
+                            </div>
+                            <div class="mock-stats">
+                                <div class="mock-stat">
+                                    <span class="stat-value stat-value--indigo">12</span>
+                                    <span class="stat-label">Activos</span>
+                                </div>
+                                <div class="mock-stat">
+                                    <span class="stat-value stat-value--emerald">38</span>
+                                    <span class="stat-label">Completados</span>
+                                </div>
+                                <div class="mock-stat">
+                                    <span class="stat-value stat-value--amber">5</span>
+                                    <span class="stat-label">En revisión</span>
+                                </div>
+                            </div>
+                            <div class="mock-projects">
+                                <div class="mock-project"><span class="proj-dot proj-dot--active"></span><span>API Gateway Refactor</span><span class="proj-tag">Activo</span></div>
+                                <div class="mock-project"><span class="proj-dot proj-dot--pending"></span><span>Dashboard Analytics</span><span class="proj-tag proj-tag--pending">Revisión</span></div>
+                                <div class="mock-project"><span class="proj-dot proj-dot--done"></span><span>Auth Microservice</span><span class="proj-tag proj-tag--done">Listo</span></div>
+                                <div class="mock-project"><span class="proj-dot proj-dot--active"></span><span>Mobile App v2</span><span class="proj-tag">Activo</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Floating stat card -->
+                <div class="float-card float-card--top">
+                    <i class="bi bi-lightning-charge-fill float-card-icon float-card-icon--yellow"></i>
+                    <div>
+                        <div class="float-card-value">94%</div>
+                        <div class="float-card-label">Tareas a tiempo</div>
+                    </div>
+                </div>
+                <div class="float-card float-card--bottom">
+                    <i class="bi bi-shield-check float-card-icon float-card-icon--green"></i>
+                    <div>
+                        <div class="float-card-value">Clean Arch</div>
+                        <div class="float-card-label">.NET 9 · EF Core</div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="rounded-xl border border-slate-200 bg-white text-slate-950 shadow-sm">
-            <div class="p-6 flex flex-col items-start gap-4">
-                <div class="bg-indigo-50 p-2.5 rounded-lg border border-indigo-100">
-                    <i class="bi bi-bar-chart-fill text-lg text-indigo-600"></i>
+        <!-- Scroll indicator -->
+        <div class="scroll-indicator">
+            <span></span>
+        </div>
+    </section>
+
+    <!-- ═════════════════════════════════════ FEATURES ════ -->
+    <section class="features-section">
+        <div class="section-inner">
+            <div class="section-label">Características</div>
+            <h2 class="section-heading">Todo lo que tu equipo necesita</h2>
+            <p class="section-sub">Sin complejidad innecesaria. Solo las herramientas que mueven el trabajo adelante.</p>
+
+            <div class="features-grid">
+                <div class="feature-card" data-animate="fade-up" style="--delay: 0ms">
+                    <div class="feature-icon feature-icon--indigo">
+                        <i class="bi bi-kanban-fill"></i>
+                    </div>
+                    <h3>Flujos Ágiles</h3>
+                    <p>Gestión de tareas con estados, prioridades y reordenamiento inteligente. Cada tarea en su lugar correcto.</p>
+                    <ul class="feature-list">
+                        <li><i class="bi bi-check2"></i> Estados personalizables</li>
+                        <li><i class="bi bi-check2"></i> Orden automático</li>
+                        <li><i class="bi bi-check2"></i> Filtros avanzados</li>
+                    </ul>
                 </div>
-                <div>
-                    <h3 class="font-semibold leading-none tracking-tight mb-2">Toma de Decisiones</h3>
-                    <p class="text-sm text-slate-500">Obtén estado en tiempo real. Visualiza cuantas tareas faltan sin navegar por interfaces ruidosas.</p>
+
+                <div class="feature-card feature-card--highlighted" data-animate="fade-up" style="--delay: 100ms">
+                    <div class="feature-icon feature-icon--purple">
+                        <i class="bi bi-bar-chart-line-fill"></i>
+                    </div>
+                    <h3>Métricas en Tiempo Real</h3>
+                    <p>Visualiza el estado de tu equipo al instante. Cuántas tareas faltan, quién está bloqueado, qué se entregó.</p>
+                    <ul class="feature-list">
+                        <li><i class="bi bi-check2"></i> Dashboard consolidado</li>
+                        <li><i class="bi bi-check2"></i> Estado por proyecto</li>
+                        <li><i class="bi bi-check2"></i> Métricas de entrega</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card" data-animate="fade-up" style="--delay: 200ms">
+                    <div class="feature-icon feature-icon--emerald">
+                        <i class="bi bi-shield-lock-fill"></i>
+                    </div>
+                    <h3>Seguridad Empresarial</h3>
+                    <p>Autenticación JWT y Cookie, BCrypt para contraseñas y arquitectura limpia lista para producción.</p>
+                    <ul class="feature-list">
+                        <li><i class="bi bi-check2"></i> JWT + Cookie Auth</li>
+                        <li><i class="bi bi-check2"></i> BCrypt passwords</li>
+                        <li><i class="bi bi-check2"></i> Clean Architecture</li>
+                    </ul>
                 </div>
             </div>
         </div>
+    </section>
 
-        <div class="rounded-xl border border-slate-200 bg-white text-slate-950 shadow-sm">
-            <div class="p-6 flex flex-col items-start gap-4">
-                <div class="bg-slate-900 p-2.5 rounded-lg border border-slate-800">
-                    <i class="bi bi-shield-check text-lg text-slate-50"></i>
+    <!-- ═════════════════════════════════════════ HOW ═════ -->
+    <section class="how-section">
+        <div class="section-inner">
+            <div class="section-label">Cómo funciona</div>
+            <h2 class="section-heading">Simple. Poderoso. Veloz.</h2>
+
+            <div class="steps-grid">
+                <div class="step">
+                    <div class="step-num">01</div>
+                    <h4>Crea tu proyecto</h4>
+                    <p>Define el alcance, asigna un status y empieza a construir tu roadmap en segundos.</p>
                 </div>
-                <div>
-                    <h3 class="font-semibold leading-none tracking-tight mb-2">Calidad Empresarial</h3>
-                    <p class="text-sm text-slate-500">Arquitectura Clean en .NET y diseño meticuloso para garantizar que los equipos de ingeniería amen usarla.</p>
+                <div class="step-connector"><i class="bi bi-arrow-right"></i></div>
+                <div class="step">
+                    <div class="step-num">02</div>
+                    <h4>Gestiona tareas</h4>
+                    <p>Agrega, ordena y actualiza tareas con una UX fluida y sin recargas de página.</p>
+                </div>
+                <div class="step-connector"><i class="bi bi-arrow-right"></i></div>
+                <div class="step">
+                    <div class="step-num">03</div>
+                    <h4>Entrega con confianza</h4>
+                    <p>Monitorea el progreso, filtra por estado y lleva cada proyecto a la línea de llegada.</p>
                 </div>
             </div>
         </div>
+    </section>
 
-    </div>
-</section>
-
-<footer class="w-full py-6 md:py-12 border-t border-slate-200 bg-white">
-    <div class="container mx-auto flex flex-col md:flex-row items-center justify-between px-4 md:px-6 text-sm text-slate-500">
-        <div class="flex items-center gap-2 font-medium text-slate-900">
-            <div class="bg-slate-900 text-white p-1 rounded flex items-center justify-center">
-                <i class="bi bi-hexagon-fill text-[10px]"></i>
+    <!-- ═════════════════════════════════════════ CTA ═════ -->
+    <section class="cta-section">
+        <div class="cta-glow"></div>
+        <div class="section-inner cta-inner">
+            <h2 class="cta-heading">¿Listo para empezar?</h2>
+            <p class="cta-sub">Crea tu cuenta gratuita y ten tu primer proyecto corriendo en menos de 2 minutos.</p>
+            <div class="cta-buttons">
+                <a asp-controller="Auth" asp-action="Register" class="btn btn--primary btn--lg">
+                    <i class="bi bi-rocket-takeoff-fill"></i>
+                    Crear cuenta gratis
+                </a>
+                <a asp-controller="Auth" asp-action="Login" class="btn btn--outline-white btn--lg">
+                    Iniciar Sesión
+                </a>
             </div>
-            ProMana
         </div>
-        <p class="mt-4 md:mt-0">&copy; @DateTime.Now.Year. Construido con rigor ingenieril.</p>
-    </div>
-</footer>
+    </section>
+
+    <!-- ═══════════════════════════════════════ FOOTER ════ -->
+    <footer class="landing-footer">
+        <div class="section-inner footer-inner">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <i class="bi bi-hexagon-fill"></i>
+                </div>
+                <span>ProMana</span>
+            </div>
+            <p class="footer-copy">&copy; @DateTime.Now.Year ProMana</p>
+            <div class="footer-techs">
+                <span class="tech-badge">.NET 9</span>
+                <span class="tech-badge">Clean Arch</span>
+                <span class="tech-badge">PostgreSQL</span>
+                <span class="tech-badge">HTMX</span>
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+@section Scripts {
+<script>
+    // Intersection Observer for staggered animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('[data-animate]').forEach(el => {
+        observer.observe(el);
+    });
+</script>
+}
